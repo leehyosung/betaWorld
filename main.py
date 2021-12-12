@@ -1,10 +1,16 @@
 import uvicorn
 from fastapi import FastAPI
+from app.users import users
+from app.contents import contents
 
 app = FastAPI()
 
+
+app.include_router(users.router)
+app.include_router(contents.router)
+
 @app.get("/")
-def read_root():
+async def read_root():
     return {"Hello": "World"}
 
 
